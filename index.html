@@ -28,21 +28,28 @@
     <audio autoplay loop>
         <source src="https://www.soundjay.com/nature/sounds/birds-3.mp3" type="audio/mpeg">
     </audio>
+
 </head>
 <body>
 
-    <h2>Osho Meditation Voice Guide</h2>
-    
-    <label for="meditationType">Choose a Meditation Technique:</label>
-    <select id="meditationType">
-        <option value="dynamic">Dynamic Meditation</option>
-        <option value="kundalini">Kundalini Meditation</option>
-        <option value="nadabrahma">Nadabrahma Meditation</option>
-        <option value="chakra">Chakra Breathing Meditation</option>
-        <option value="vipassana">Vipassana Meditation</option>
-    </select>
+    <!-- ORIGINAL WEBSITE CONTENT -->
+    <div id="root"></div>  
 
-    <button id="speakButton">Listen to Meditation Guide</button>
+    <!-- OSHO MEDITATION GUIDE -->
+    <div id="meditation-guide">
+        <h2>Osho Meditation Voice Guide</h2>
+        
+        <label for="meditationType">Choose a Meditation Technique:</label>
+        <select id="meditationType">
+            <option value="dynamic">Dynamic Meditation</option>
+            <option value="kundalini">Kundalini Meditation</option>
+            <option value="nadabrahma">Nadabrahma Meditation</option>
+            <option value="chakra">Chakra Breathing Meditation</option>
+            <option value="vipassana">Vipassana Meditation</option>
+        </select>
+
+        <button id="speakButton">Listen to Meditation Guide</button>
+    </div>
 
     <script>
         document.getElementById("speakButton").addEventListener("click", function () {
@@ -84,6 +91,9 @@
 
     <!-- Chatbot (Tidio) -->
     <script src="//code.tidio.co/rubvmxobcies60q2exhi5d03pxp61i8z.js" async></script>
+
+    <!-- Main Website React/Vite Script -->
+    <script type="module" src="/src/main.tsx"></script>
 
 </body>
 </html>
