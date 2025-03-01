@@ -1,24 +1,38 @@
-<!doctype html>
-<html lang="en">
-  <head>
-
-    
-
-    <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
-<script>
-  new Darkmode().showWidget();
-</script>
-
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Osho Meditation Voice Guide</title>
+    <title>Yogini Kirti - Osho Meditation</title>
+
+    <!-- Dark Mode Toggle -->
+    <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+    <script>
+        new Darkmode().showWidget();
+    </script>
+
+    <!-- Google Translate -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://api.whatsapp.com/send?phone=7618237743" target="_blank" style="position:fixed;bottom:20px;right:20px;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="50">
+    </a>
+
+    <!-- Background Meditation Music -->
+    <audio autoplay loop>
+        <source src="https://www.soundjay.com/nature/sounds/birds-3.mp3" type="audio/mpeg">
+    </audio>
 </head>
 <body>
 
     <h2>Osho Meditation Voice Guide</h2>
+    
     <label for="meditationType">Choose a Meditation Technique:</label>
     <select id="meditationType">
         <option value="dynamic">Dynamic Meditation</option>
@@ -28,65 +42,48 @@
         <option value="vipassana">Vipassana Meditation</option>
     </select>
 
-    <button onclick="speakMeditation()">Listen to Meditation Guide</button>
+    <button id="speakButton">Listen to Meditation Guide</button>
 
     <script>
-        function speakMeditation() {
-            let speech = new SpeechSynthesisUtterance();
-            let meditationType = document.getElementById("meditationType").value;
-            
-            let meditationTexts = {
-                "dynamic": "Osho Dynamic Meditation. Stand with your feet apart. Breathe deeply and chaotically through your nose, letting your body move naturally. After ten minutes, release emotions by shouting or crying. Then jump and chant 'Hoo, Hoo, Hoo!' with full energy. Finally, freeze completely for fifteen minutes, becoming a silent witness.",
-                
-                "kundalini": "Osho Kundalini Meditation. Stand and shake your body for fifteen minutes, allowing energy to flow freely. Then dance with joy for another fifteen minutes. Next, sit in stillness with eyes closed, observing your inner world. Finally, lie down in silence, witnessing your body and breath.",
-                
-                "nadabrahma": "Osho Nadabrahma Meditation. Sit comfortably with eyes closed. Begin humming, feeling the vibrations in your body. After twenty minutes, move your hands outward in a giving gesture. Then, turn them inward, absorbing energy. Finally, rest in silence, becoming one with existence.",
-                
-                "chakra": "Osho Chakra Breathing Meditation. Stand tall and breathe deeply. Begin breathing intensely into the first chakra, then move up to the second, third, and so on until you reach the seventh. Feel the energy rising through your spine. Then, sit silently, witnessing the flow of energy inside you.",
-                
-                "vipassana": "Osho Vipassana Meditation. Sit comfortably in silence. Observe your breath as it flows in and out naturally. Do not change it, just witness. If thoughts arise, let them pass like clouds in the sky. Stay present, aware, and rooted in this moment."
-            };
+        document.getElementById("speakButton").addEventListener("click", function () {
+            if ('speechSynthesis' in window) {
+                let speech = new SpeechSynthesisUtterance();
+                let meditationType = document.getElementById("meditationType").value;
 
-            speech.text = meditationTexts[meditationType];
-            speech.lang = "en-US";  // Change to "hi-IN" for Hindi
-            speech.rate = 0.85;    
-            speech.pitch = 0.6;    
-            speech.volume = 1;
+                let meditationTexts = {
+                    "dynamic": "Osho Dynamic Meditation. Stand with your feet apart. Breathe deeply and chaotically through your nose, letting your body move naturally. After ten minutes, release emotions by shouting or crying. Then jump and chant 'Hoo, Hoo, Hoo!' with full energy. Finally, freeze completely for fifteen minutes, becoming a silent witness.",
+                    
+                    "kundalini": "Osho Kundalini Meditation. Stand and shake your body for fifteen minutes, allowing energy to flow freely. Then dance with joy for another fifteen minutes. Next, sit in stillness with eyes closed, observing your inner world. Finally, lie down in silence, witnessing your body and breath.",
+                    
+                    "nadabrahma": "Osho Nadabrahma Meditation. Sit comfortably with eyes closed. Begin humming, feeling the vibrations in your body. After twenty minutes, move your hands outward in a giving gesture. Then, turn them inward, absorbing energy. Finally, rest in silence, becoming one with existence.",
+                    
+                    "chakra": "Osho Chakra Breathing Meditation. Stand tall and breathe deeply. Begin breathing intensely into the first chakra, then move up to the second, third, and so on until you reach the seventh. Feel the energy rising through your spine. Then, sit silently, witnessing the flow of energy inside you.",
+                    
+                    "vipassana": "Osho Vipassana Meditation. Sit comfortably in silence. Observe your breath as it flows in and out naturally. Do not change it, just witness. If thoughts arise, let them pass like clouds in the sky. Stay present, aware, and rooted in this moment."
+                };
 
-            window.speechSynthesis.speak(speech);
-        }
+                speech.text = meditationTexts[meditationType];
+                speech.lang = "en-US";  // Change to "hi-IN" for Hindi
+                speech.rate = 0.85;    
+                speech.pitch = 0.6;    
+                speech.volume = 1;
+
+                // Select best voice
+                let voices = window.speechSynthesis.getVoices();
+                speech.voice = voices.find(voice => voice.name.includes("Google UK English Male")) || voices[0];
+
+                window.speechSynthesis.speak(speech);
+            } else {
+                alert("Sorry, your browser does not support Speech Synthesis.");
+            }
+        });
     </script>
 
-</body>
-</html>
-
-
+    <!-- Google Translate Element -->
     <div id="google_translate_element"></div>
-<script type="text/javascript">
-  function googleTranslateElementInit() {
-    new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-  }
-</script>
-<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-    <a href="https://api.whatsapp.com/send?phone=7618237743" target="_blank" style="position:fixed;bottom:20px;right:20px;">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="50">
-</a>
+    <!-- Chatbot (Tidio) -->
+    <script src="//code.tidio.co/rubvmxobcies60q2exhi5d03pxp61i8z.js" async></script>
 
-
-    <audio autoplay loop>
-  <source src="https://pixabay.com/music/meditationspiritual-meditation-relaxing-music-293922/" type="audio/mp3">
-</audio>
-
-    <meta name="p:domain_verify" content="6b66ffbc4baeddbde45584696918c9f9"/>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Yogini Kirti</title>
-  </head>
- <script src="//code.tidio.co/rubvmxobcies60q2exhi5d03pxp61i8z.js" async></script>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+</body>
 </html>
